@@ -1,0 +1,22 @@
+﻿{
+  "oms": {
+    "Base_Url": "http://127.0.0.1:5000"
+  },
+  "ecmall": {
+    "Base_Url": "http://www.jingjing.shop"
+  },
+  "custom": {
+    "Base_Url": "http://211.161.59.95:4004"
+  },
+  "wms": {
+    "Base_Url": "http://123.151.162.18:8090/WMS_Service/mServlet"
+  },
+  "erp": {
+   "kvs": [
+      {
+        "k": "59496713-49ed-40e6-aabf-a42f8345f306",
+        "v": "http://47.92.199.140"
+      }
+    ]
+  }
+}

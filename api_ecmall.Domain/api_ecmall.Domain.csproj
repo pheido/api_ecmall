@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1EFFD4A8-693A-459A-B362-0F9E14E9F286}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>api_ecmall.Domain</RootNamespace>
+    <AssemblyName>api_ecmall.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.5.1.0\lib\net451\RabbitMQ.Client.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.0.0\lib\net4\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAlipayRepository.cs" />
+    <Compile Include="Abstract\ICustomsRepository.cs" />
+    <Compile Include="Abstract\IEcmOrderRepository.cs" />
+    <Compile Include="Abstract\ILog4netHelper.cs" />
+    <Compile Include="Abstract\IlogsRspository.cs" />
+    <Compile Include="Abstract\IpayExInfoRepository.cs" />
+    <Compile Include="Abstract\IPayOrderRepository.cs" />
+    <Compile Include="Abstract\IProductRepository.cs" />
+    <Compile Include="Abstract\IRabbitMQHelper.cs" />
+    <Compile Include="Abstract\IUserRepository.cs" />
+    <Compile Include="Abstract\IWarehouseRepository.cs" />
+    <Compile Include="Abstract\IWxpayRepository.cs" />
+    <Compile Include="Attribute\GuidAttribute.cs" />
+    <Compile Include="Concrete\AlipayRepository.cs" />
+    <Compile Include="Concrete\CustomsRepository.cs" />
+    <Compile Include="Concrete\EcmOrderRepository.cs" />
+    <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\Log4netHelper.cs" />
+    <Compile Include="Concrete\Log4net\ActionConverter.cs" />
+    <Compile Include="Concrete\Log4net\ActionLayoutPattern.cs" />
+    <Compile Include="Concrete\logsRspository.cs" />
+    <Compile Include="Concrete\payExInfoRepository.cs" />
+    <Compile Include="Concrete\PayOrderRepository.cs" />
+    <Compile Include="Concrete\ProductRepository.cs" />
+    <Compile Include="Concrete\RabbitMQHelper.cs" />
+    <Compile Include="Concrete\UserRepository.cs" />
+    <Compile Include="Concrete\WarehouseRepository.cs" />
+    <Compile Include="Concrete\WxpayRepository.cs" />
+    <Compile Include="Entities\110Model\ENT110Model.cs" />
+    <Compile Include="Entities\311Model\CEB312Message.cs" />
+    <Compile Include="Entities\311Model\ENT311Message_GuangZhou.cs" />
+    <Compile Include="Entities\311Model\ENT311Model.cs" />
+    <Compile Include="Entities\311Model\Json311Model.cs" />
+    <Compile Include="Entities\AspNetClient.cs" />
+    <Compile Include="Entities\AspNetUser.cs" />
+    <Compile Include="Entities\custom_order.cs" />
+    <Compile Include="Entities\Express\ECMS_Push.cs" />
+    <Compile Include="Entities\Express\ECMS_Request.cs" />
+    <Compile Include="Entities\Express\ECMS_Responese.cs" />
+    <Compile Include="Entities\Express\ECMS_Select.cs" />
+    <Compile Include="Entities\Express\ExpressToOMS.cs" />
+    <Compile Include="Entities\Inventory\InventoryClose.cs" />
+    <Compile Include="Entities\Inventory\InventoryPush.cs" />
+    <Compile Include="Entities\Inventory\InventoryPushRe.cs" />
+    <Compile Include="Entities\Orders\Order.cs" />
+    <Compile Include="Entities\Orders\OrderItem.cs" />
+    <Compile Include="Entities\Orders\OrderItemDetail.cs" />
+    <Compile Include="Entities\Order_1.cs" />
+    <Compile Include="Entities\ecm_order_goods.cs" />
+    <Compile Include="Entities\payExchangeInfoHead.cs" />
+    <Compile Include="Entities\payExchangeInfoList.cs" />
+    <Compile Include="Entities\payExInfo_DTO.cs" />
+    <Compile Include="Entities\Pay\AliPayCustomsResult.cs" />
+    <Compile Include="Entities\Pay\AliPayOrder.cs" />
+    <Compile Include="Entities\Pay\alipay_request.cs" />
+    <Compile Include="Entities\Pay\wxpay_re.cs" />
+    <Compile Include="Entities\ProductDetailsImgs.cs" />
+    <Compile Include="Entities\ProductItem.cs" />
+    <Compile Include="Entities\LoggerInfo.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\order_status.cs" />
+    <Compile Include="Entities\payExInfo.cs" />
+    <Compile Include="Entities\Pay\old_alipay.cs" />
+    <Compile Include="Entities\Pay\old_alipay_respones.cs" />
+    <Compile Include="Entities\Pay\old_PayOrder.cs" />
+    <Compile Include="Entities\Pay\wxpay.cs" />
+    <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\sku_update.cs" />
+    <Compile Include="Entities\sku_update_item.cs" />
+    <Compile Include="Entities\SpecItem.cs" />
+    <Compile Include="Entities\UserInfo.cs" />
+    <Compile Include="Entities\Vendor\Vendor.cs" />
+    <Compile Include="Entities\Vendor\VendorBoundMsg.cs" />
+    <Compile Include="Entities\Vendor\VendorModel.cs" />
+    <Compile Include="Entities\WareHouse\WarehouseInfo.cs" />
+    <Compile Include="Entities\WMS\AttributeValueList.cs" />
+    <Compile Include="Entities\WMS\Category.cs" />
+    <Compile Include="Entities\WMS\Consignor.cs" />
+    <Compile Include="Entities\WMS\ProductAttribute.cs" />
+    <Compile Include="Entities\WMS\ProductItem_WMS.cs" />
+    <Compile Include="Entities\WMS\Product_WMS.cs" />
+    <Compile Include="Entities\WMS\StockNotice.cs" />
+    <Compile Include="Entities\WMS\VendorModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\AliPay\AlipayConfig.cs" />
+    <Compile Include="Utils\AliPay\AlipayCore.cs" />
+    <Compile Include="Utils\AliPay\AlipayNotify.cs" />
+    <Compile Include="Utils\AliPay\AlipaySubmit.cs" />
+    <Compile Include="Utils\AliPay\MD5.cs" />
+    <Compile Include="Utils\MD5Helper.cs" />
+    <Compile Include="Utils\SignsHelper.cs" />
+    <Compile Include="Utils\TimeStamp.cs" />
+    <Compile Include="Utils\XmlHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DTOModel\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

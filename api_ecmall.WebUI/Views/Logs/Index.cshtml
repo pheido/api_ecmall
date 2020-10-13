@@ -1,0 +1,127 @@
+﻿@model api_ecmall.WebUI.Models.LogsViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <h2>Logs Info  时间: @DateTime.Now.ToString("HH:mm:ss")</h2>
+
+    <table id="tab1" class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    时间
+                </th>
+                <th>
+                    记录事项
+                </th>
+                <th>
+                    类型
+                </th>
+                <th>
+                    信息
+                </th>
+                <th>
+                    错误
+                </th>
+                @*<th>
+                        操作
+                    </th>*@
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.info)
+            {
+                <tr class=@(item.Id==Model.index?"active":( item.Level == "INFO" ? "" : "danger"))>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @*@Html.DisplayFor(modelItem => item.Logger)*@
+                        @(item.Logger + "(" + item.UserName + ")")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Level)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Message)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Exception)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+
+
+    Date.prototype.format = function(fmt){
+        var o = {
+            "M+" : this.getMonth()+1,                 //月份
+            "d+" : this.getDate(),                    //日
+            "h+" : this.getHours(),                   //小时
+            "m+" : this.getMinutes(),                 //分
+            "s+" : this.getSeconds(),                 //秒
+            "q+" : Math.floor((this.getMonth()+3)/3), //季度
+            "S"  : this.getMilliseconds()             //毫秒
+        };
+
+        if(/(y+)/.test(fmt)){
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        }
+
+        for(var k in o){
+            if(new RegExp("("+ k +")").test(fmt)){
+                fmt = fmt.replace(
+                  RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            }
+        }
+
+        return fmt;
+    };
+    var ind=@Model.index;
+    function getdata(){
+        //$('h2').html("Logs Info  时间: "+new Date().format("yyyy-MM-dd hh:mm:ss"));
+        $.ajax({
+            url:"/Logs/GetData",
+            dataType:"json",
+            type:"POST",
+            data:{index:ind},
+            success:function(re){
+                if(re.index!=ind)
+                {
+                    $("table tbody").html("");
+                    var htm="";
+                    $.each(re.info,function(commIndex,comment){
+                        var da=comment['Date'].replace(/\/Date\((\d+)\)\//gi, '$1');
+                        var d=new Date();
+                        d.setTime(da)
+                        htm+="<tr class=\""+(comment['Id']==ind?"success":(comment['Level'] == "INFO" ? "" : "danger"))+"\"><td>"
+                            +d.format("yyyy-MM-dd hh:mm:ss")+
+                        "</td><td>"+comment['Logger']+"("+comment['UserName']+")"
+                        +"</td><td>"+comment['Level']+
+                        "</td><td>"+comment['Message']+"</td><td>"+comment['Exception']+
+                        "</td></tr>";
+                    }
+                        );
+
+                    $("table tbody").html(htm);
+                    ind=re.index;
+                }
+            },
+            error:function(re)
+            {
+                alert(re);
+            }
+            });
+    }
+    setInterval(getdata,15000);
+    setInterval(function(){
+        $('h2').html("Logs Info  时间: "+new Date().format("yyyy-MM-dd hh:mm:ss"));
+    },1000);
+</script>
